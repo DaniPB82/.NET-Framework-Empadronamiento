@@ -147,5 +147,36 @@ namespace Dal
             personas = daoPersona.ObtenerPorAnioNacimiento(2000) as List<Persona>;
             Assert.AreEqual(0, personas.Count);
         }
+
+        [TestMethod]
+        public void InsertarPersona()
+        {
+            Persona persona = new Persona() { HogarId = null, Dni = "44444444D", Nombre = "Pepe", Apellido = "Palo", FechaNacimiento = new DateTime(1980, 8, 8) };
+            daoPersona.Insertar(persona);
+            Assert.IsNotNull(persona);
+
+            Persona personaNueva = daoPersona.ObtenerPorId(4L);
+            Assert.AreEqual(personaNueva, persona);
+        }
+
+        [TestMethod]
+        public void ModificarPersona()
+        {
+            Persona personaModificada = new Persona() { Id = 3L, HogarId = null, Dni = "12345678X", Nombre = "Patxi", Apellido = "Aguirre", FechaNacimiento = new DateTime(1975, 3, 10) };
+            daoPersona.Modificar(personaModificada);
+            Assert.IsNotNull(personaModificada);
+
+            Persona personaNueva = daoPersona.ObtenerPorId(3L);
+            Assert.IsNotNull(personaNueva);
+            Assert.AreEqual(personaNueva, personaModificada);
+        }
+
+        [TestMethod]
+        public void EliminarPersona()
+        {
+            daoPersona.Eliminar(1L);
+            Persona persona = daoPersona.ObtenerPorId(1L);
+            Assert.IsNull(persona);
+        }
     }
 }
