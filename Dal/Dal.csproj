@@ -53,6 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DaoEntityMunicipio.cs" />
+    <Compile Include="DaoEntityPersona.cs" />
+    <Compile Include="DaoEntityProvincia.cs" />
+    <Compile Include="DaoEntityVivienda.cs" />
     <Compile Include="EmpadronamientoContext.cs" />
     <Compile Include="IDao.cs" />
     <Compile Include="IDaoMunicipio.cs" />

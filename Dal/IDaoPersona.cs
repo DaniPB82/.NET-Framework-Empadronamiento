@@ -9,7 +9,7 @@ namespace Dal
 {
     public interface IDaoPersona: IDao<Persona>
     {
-        Persona ObtenerPorDni(long id);
+        IEnumerable<Persona> ObtenerPorDni(string dni);
         IEnumerable<Persona> ObtenerPorNombre(string nombre);
         IEnumerable<Persona> ObtenerPorApellido(string apellido);
     }
