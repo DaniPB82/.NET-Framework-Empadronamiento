@@ -62,6 +62,7 @@
     <Compile Include="DaoEntityPersonaTest.cs" />
     <Compile Include="DaoEntityProvinciaTest.cs" />
     <Compile Include="DaoEntityTestInicializacion.cs" />
+    <Compile Include="DaoEntityViviendaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
