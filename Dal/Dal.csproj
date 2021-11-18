@@ -58,6 +58,7 @@
     <Compile Include="DaoEntityProvincia.cs" />
     <Compile Include="DaoEntityVivienda.cs" />
     <Compile Include="EmpadronamientoContext.cs" />
+    <Compile Include="Fabrica.cs" />
     <Compile Include="IDao.cs" />
     <Compile Include="IDaoMunicipio.cs" />
     <Compile Include="IDaoPersona.cs" />
