@@ -55,13 +55,13 @@ namespace Dal
         protected static readonly List<Propiedad> propiedades = new List<Propiedad>() { propiedad1, propiedad2, propiedad3, propiedad4, propiedad5 };
 
         // Conexión a la BBDD
-        protected DbConnection ObtenerConexion()
+        private DbConnection ObtenerConexion()
         {
             return new SqlConnection(conexion);
         }
 
         [TestInitialize]
-        public void PreTest()
+        protected void PreTest()
         {
             using (DbConnection con = ObtenerConexion())
             {
