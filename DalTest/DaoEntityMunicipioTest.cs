@@ -14,7 +14,6 @@ namespace Dal
         [TestMethod]
         public void ObtenerTodosLosMunicipios()
         {
-            PreTest();
             List<Municipio> municipios = daoMunicipio.ObtenerTodos() as List<Municipio>;
 
             Assert.IsNotNull(municipios);
@@ -29,7 +28,6 @@ namespace Dal
         [TestMethod]
         public void ObtenerMunicipioPorId()
         {
-            PreTest();
             Municipio municipio = daoMunicipio.ObtenerPorId(1L);
             Assert.IsNotNull(municipio);
             Assert.AreEqual(municipio1, municipio);
@@ -49,7 +47,6 @@ namespace Dal
         [TestMethod]
         public void ObtenerMunicipioPorNombre()
         {
-            PreTest();
             List<Municipio> municipios = daoMunicipio.ObtenerPorNombre("bi") as List<Municipio>;
             Assert.IsNotNull(municipios);
             Assert.AreEqual(2, municipios.Count);
@@ -76,7 +73,6 @@ namespace Dal
         [TestMethod]
         public void InsertarMunicipio()
         {
-            PreTest();
             Municipio municipio = new Municipio() { Nombre = "Portugalete", ProvinciaId = 1L };
             daoMunicipio.Insertar(municipio);
             Assert.IsNotNull(municipio);
@@ -100,7 +96,6 @@ namespace Dal
         [TestMethod]
         public void EliminarMunicipio()
         {
-            PreTest();
             daoMunicipio.Eliminar(1L);
             Municipio municipio = daoMunicipio.ObtenerPorId(1L);
             Assert.IsNull(municipio);

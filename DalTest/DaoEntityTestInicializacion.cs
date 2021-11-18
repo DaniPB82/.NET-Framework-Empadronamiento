@@ -4,11 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace Dal
 {
     [TestClass]
-    public class DaoEntityTestInicializacion
+    public abstract class DaoEntityTestInicializacion
     {
         // Daos
         protected static readonly IDaoPersona daoPersona = Fabrica.ObtenerDaoPersona(Tipos.Entity);
@@ -61,7 +62,7 @@ namespace Dal
         }
 
         [TestInitialize]
-        protected void PreTest()
+        public void PreTest()
         {
             using (DbConnection con = ObtenerConexion())
             {
@@ -225,7 +226,9 @@ namespace Dal
 
                     com.ExecuteNonQuery();
                 }
+                Debug.Print("TestInitialize");
             }
+            
         }
     }
 }
