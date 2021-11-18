@@ -54,6 +54,14 @@ namespace Dal
             }
         }
 
+        public IEnumerable<Persona> ObtenerPorAnioNacimiento(int anio)
+        {
+            using (EmpadronamientoContext db = new EmpadronamientoContext())
+            {
+                return db.Personas.Where(p => p.FechaNacimiento.Year == anio).ToList();
+            }
+        }
+
         public Persona ObtenerPorId(long id)
         {
             using (EmpadronamientoContext db = new EmpadronamientoContext())

@@ -9,7 +9,7 @@ namespace Dal
     public partial class EmpadronamientoContext : DbContext
     {
         public EmpadronamientoContext()
-            : base(@"Data Source=ryzen5-3600;Initial Catalog=Empadronamiento;Integrated Security=True")
+            : base(@"Data Source=ryzen5-3600;Initial Catalog=EmpadronamientoTest;Integrated Security=True")
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;

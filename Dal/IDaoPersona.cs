@@ -12,5 +12,6 @@ namespace Dal
         IEnumerable<Persona> ObtenerPorDni(string dni);
         IEnumerable<Persona> ObtenerPorNombre(string nombre);
         IEnumerable<Persona> ObtenerPorApellido(string apellido);
+        IEnumerable<Persona> ObtenerPorAnioNacimiento(int anio);
     }
 }
