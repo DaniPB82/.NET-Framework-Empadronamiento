@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,13 @@ namespace Entidades
         [Required]
         [StringLength(100)]
         public string Apellido { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Column(TypeName = "Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Fecha de nacimiento")]
+        public DateTime FechaNacimiento { get; set; }
 
         public virtual Vivienda Viviendas { get; set; }
 
