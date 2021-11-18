@@ -93,19 +93,10 @@ namespace Dal
                 com.ExecuteNonQuery();
 
                 com.CommandText = "DELETE FROM Provincias";
-                //com.CommandText = "TRUNCATE TABLE Provincias";
                 com.ExecuteNonQuery();
 
                 com.CommandText = "DBCC CHECKIDENT ('[Provincias]', RESEED, 0);";
                 com.ExecuteNonQuery();
-
-
-
-
-
-
-
-
 
                 // Inserción de datos en la tabla "Provincias"
                 com.CommandText = "INSERT INTO Provincias (Nombre)" +

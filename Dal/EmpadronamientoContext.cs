@@ -26,7 +26,7 @@ namespace Dal
                 .HasMany(e => e.Viviendas)
                 .WithRequired(e => e.Municipios)
                 .HasForeignKey(e => e.MunicipioId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Persona>()
                 .HasMany(e => e.Viviendas1)
@@ -37,13 +37,13 @@ namespace Dal
                 .HasMany(e => e.Municipios)
                 .WithRequired(e => e.Provincias)
                 .HasForeignKey(e => e.ProvinciaId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Vivienda>()
                 .HasMany(e => e.Personas)
                 .WithRequired(e => e.Viviendas)
                 .HasForeignKey(e => e.HogarId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
         }
     }
 }

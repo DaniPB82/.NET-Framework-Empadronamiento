@@ -18,7 +18,7 @@ namespace Entidades
 
         public long Id { get; set; }
 
-        public long MunicipioId { get; set; }
+        public long? MunicipioId { get; set; }
 
         [Required]
         [StringLength(100)]

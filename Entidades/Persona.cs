@@ -18,7 +18,7 @@ namespace Entidades
 
         public long Id { get; set; }
 
-        public long HogarId { get; set; }
+        public long? HogarId { get; set; }
 
         [Required]
         [StringLength(9)]

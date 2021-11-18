@@ -64,13 +64,9 @@
     <Compile Include="IDaoPersona.cs" />
     <Compile Include="IDaoProvincia.cs" />
     <Compile Include="IDaoVivienda.cs" />
-    <Compile Include="Migrations\202111180929594_InitialDatabaseMigration.cs" />
-    <Compile Include="Migrations\202111180929594_InitialDatabaseMigration.designer.cs">
-      <DependentUpon>202111180929594_InitialDatabaseMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111181250174_PropiedadMigration.cs" />
-    <Compile Include="Migrations\202111181250174_PropiedadMigration.designer.cs">
-      <DependentUpon>202111181250174_PropiedadMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202111181736595_EntidadesMigration.cs" />
+    <Compile Include="Migrations\202111181736595_EntidadesMigration.designer.cs">
+      <DependentUpon>202111181736595_EntidadesMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,11 +82,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202111180929594_InitialDatabaseMigration.resx">
-      <DependentUpon>202111180929594_InitialDatabaseMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111181250174_PropiedadMigration.resx">
-      <DependentUpon>202111181250174_PropiedadMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111181736595_EntidadesMigration.resx">
+      <DependentUpon>202111181736595_EntidadesMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -14,6 +14,7 @@ namespace Dal
         [TestMethod]
         public void ObtenerTodasLasProvincias()
         {
+            PreTest();
             List<Provincia> provincias = daoProvincia.ObtenerTodos() as List<Provincia>;
 
             Assert.IsNotNull(provincias);
@@ -26,6 +27,7 @@ namespace Dal
         [TestMethod]
         public void ObtenerProvinciaPorNombre()
         {
+            PreTest();
             List<Provincia> provincias = daoProvincia.ObtenerPorNombre("cay") as List<Provincia>;
             Assert.IsNotNull(provincias);
             Assert.AreEqual(1, provincias.Count);
@@ -39,6 +41,7 @@ namespace Dal
         [TestMethod]
         public void ObtenerProvinciaPorId()
         {
+            PreTest();
             Provincia provincia = daoProvincia.ObtenerPorId(1L);
             Assert.IsNotNull(provincia);
             Assert.AreEqual(provincia1, provincia);
