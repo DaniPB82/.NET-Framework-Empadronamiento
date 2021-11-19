@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Entidades.Persona;
 
 namespace Dal
 {
@@ -149,6 +150,58 @@ namespace Dal
         }
 
         [TestMethod]
+        public void ObtenerPropietariosPorVivienda()
+        {
+            List<Persona> propietarios = daoPersona.ObtenerPropietariosPorVivienda(1L) as List<Persona>;
+            Assert.IsNotNull(propietarios);
+            Assert.AreEqual(2, propietarios.Count);
+            Assert.AreEqual(persona1, propietarios[0]);
+            Assert.AreEqual(persona3, propietarios[1]);
+
+            propietarios = daoPersona.ObtenerPropietariosPorVivienda(2L) as List<Persona>;
+            Assert.IsNotNull(propietarios);
+            Assert.AreEqual(2, propietarios.Count);
+            Assert.AreEqual(persona1, propietarios[0]);
+            Assert.AreEqual(persona2, propietarios[1]);
+
+            propietarios = daoPersona.ObtenerPropietariosPorVivienda(3L) as List<Persona>;
+            Assert.IsNotNull(propietarios);
+            Assert.AreEqual(2, propietarios.Count);
+            Assert.AreEqual(persona2, propietarios[0]);
+            Assert.AreEqual(persona3, propietarios[1]);
+
+            propietarios = daoPersona.ObtenerPropietariosPorVivienda(4L) as List<Persona>;
+            Assert.IsNotNull(propietarios);
+            Assert.AreEqual(0, propietarios.Count);
+        }
+
+        [TestMethod]
+        public void ObtenerPropiedadesPorPersona()
+        {
+            List<Vivienda> viviendas = daoPersona.ObtenerPropiedadesPorPersona(1L) as List<Vivienda>;
+            Assert.IsNotNull(viviendas);
+            Assert.AreEqual(2, viviendas.Count);
+            Assert.AreEqual(vivienda1, viviendas[0]);
+            Assert.AreEqual(vivienda2, viviendas[1]);
+
+            viviendas = daoPersona.ObtenerPropiedadesPorPersona(2L) as List<Vivienda>;
+            Assert.IsNotNull(viviendas);
+            Assert.AreEqual(2, viviendas.Count);
+            Assert.AreEqual(vivienda2, viviendas[0]);
+            Assert.AreEqual(vivienda3, viviendas[1]);
+
+            viviendas = daoPersona.ObtenerPropiedadesPorPersona(3L) as List<Vivienda>;
+            Assert.IsNotNull(viviendas);
+            Assert.AreEqual(2, viviendas.Count);
+            Assert.AreEqual(vivienda1, viviendas[0]);
+            Assert.AreEqual(vivienda3, viviendas[1]);
+
+            viviendas = daoPersona.ObtenerPropiedadesPorPersona(4L) as List<Vivienda>;
+            Assert.IsNotNull(viviendas);
+            Assert.AreEqual(0, viviendas.Count);
+        }
+
+        [TestMethod]
         public void InsertarPersona()
         {
             Persona persona = new Persona() { HogarId = null, Dni = "44444444D", Nombre = "Pepe", Apellido = "Palo", FechaNacimiento = new DateTime(1980, 8, 8) };
@@ -178,5 +231,48 @@ namespace Dal
             Persona persona = daoPersona.ObtenerPorId(1L);
             Assert.IsNull(persona);
         }
+
+        [TestMethod]
+        public void InsertarPropiedad()
+        {
+            Propiedad propiedad = new Propiedad() { PropietarioId = 3L, ViviendaId = 2L };
+            daoPersona.Insertar(propiedad);
+            Assert.IsNotNull(propiedad);
+
+            Propiedad propiedadNueva = daoPersona.ObtenerPropiedadPorId(3L, 2L);
+            Assert.AreEqual(propiedadNueva, propiedad);
+        }
+
+        //[TestMethod]
+        //public void ModificarPropiedad()
+        //{
+        //    Propiedad propiedadModificada = new Propiedad() { PropietarioId = 1L, ViviendaId = 3L };
+        //    daoPersona.Modificar(propiedadModificada);
+        //    Assert.IsNotNull(propiedadModificada);
+
+        //    Propiedad propiedadNueva = daoPersona.ObtenerPropiedadPorId(1L, 3L);
+        //    Assert.IsNotNull(propiedadNueva);
+        //    Assert.AreEqual(propiedadNueva, propiedadModificada);
+        //}
+
+        [TestMethod]
+        public void EliminarPropiedad()
+        {
+            daoPersona.Eliminar(2L, 3L);
+            Propiedad propiedad = daoPersona.ObtenerPropiedadPorId(2L, 3L);
+            Assert.IsNull(propiedad);
+        }
+
+        [TestMethod]
+        public void ObtenerPropiedadPorId()
+        {
+            Propiedad propiedad = daoPersona.ObtenerPropiedadPorId(1L, 1L);
+            Assert.IsNotNull(propiedad);
+
+            propiedad = daoPersona.ObtenerPropiedadPorId(4L, 2L);
+            Assert.IsNull(propiedad);
+        }
+
+
     }
 }

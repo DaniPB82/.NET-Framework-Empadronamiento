@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
+using static Entidades.Persona;
 
 namespace Dal
 {
@@ -19,6 +20,7 @@ namespace Dal
         public virtual DbSet<Persona> Personas { get; set; }
         public virtual DbSet<Provincia> Provincias { get; set; }
         public virtual DbSet<Vivienda> Viviendas { get; set; }
+        public virtual DbSet<Propiedad> Propiedades { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -44,6 +46,7 @@ namespace Dal
                 .WithRequired(e => e.Viviendas)
                 .HasForeignKey(e => e.HogarId)
                 .WillCascadeOnDelete(true);
+
         }
     }
 }

@@ -46,14 +46,19 @@ namespace Dal
 
         protected static readonly List<Persona> personas = new List<Persona>() { persona1, persona2, persona3 };
 
-        // Datos de Propiedades
-        protected static readonly Propiedad propiedad1 = new Propiedad() { PropietarioId = 1L, ViviendaId = 1L };
-        protected static readonly Propiedad propiedad2 = new Propiedad() { PropietarioId = 1L, ViviendaId = 2L };
-        protected static readonly Propiedad propiedad3 = new Propiedad() { PropietarioId = 2L, ViviendaId = 2L };
-        protected static readonly Propiedad propiedad4 = new Propiedad() { PropietarioId = 3L, ViviendaId = 3L };
-        protected static readonly Propiedad propiedad5 = new Propiedad() { PropietarioId = 3L, ViviendaId = 1L };
+        protected static readonly Persona.Propiedad propiedad1 = new Persona.Propiedad() { PropietarioId = 1L, ViviendaId = 1L };
+        protected static readonly Persona.Propiedad propiedad2 = new Persona.Propiedad() { PropietarioId = 1L, ViviendaId = 2L };
+        protected static readonly Persona.Propiedad propiedad3 = new Persona.Propiedad() { PropietarioId = 2L, ViviendaId = 2L };
+        protected static readonly Persona.Propiedad propiedad4 = new Persona.Propiedad() { PropietarioId = 2L, ViviendaId = 3L };
+        protected static readonly Persona.Propiedad propiedad5 = new Persona.Propiedad() { PropietarioId = 3L, ViviendaId = 1L };
+        protected static readonly Persona.Propiedad propiedad6 = new Persona.Propiedad() { PropietarioId = 3L, ViviendaId = 3L };
 
-        protected static readonly List<Propiedad> propiedades = new List<Propiedad>() { propiedad1, propiedad2, propiedad3, propiedad4, propiedad5 };
+        protected static readonly List<Persona.Propiedad> propiedades = new List<Persona.Propiedad>() { propiedad1, propiedad2, propiedad3, propiedad4, propiedad5, propiedad6 };
+
+
+
+
+        
 
         // Conexión a la BBDD
         private DbConnection ObtenerConexion()
@@ -72,7 +77,7 @@ namespace Dal
 
                 // Eliminación del contenido de las tablas y 
                 // reseteo de los "Id"
-                com.CommandText = "DELETE FROM Propiedades";
+                com.CommandText = "DELETE FROM Propiedads";
                 com.ExecuteNonQuery();
 
                 com.CommandText = "DELETE FROM Personas";
@@ -206,7 +211,7 @@ namespace Dal
                 }
 
                 // Inserción de datos en la tabla "Propiedades"
-                com.CommandText = "INSERT INTO Propiedades (PropietarioId, ViviendaId)" +
+                com.CommandText = "INSERT INTO Propiedads (PropietarioId, ViviendaId)" +
                     " VALUES (@PropietarioId, @ViviendaId)";
 
                 DbParameter parPropietarioId = com.CreateParameter();
@@ -219,14 +224,13 @@ namespace Dal
                 parViviendaId.DbType = System.Data.DbType.Int64;
                 com.Parameters.Add(parViviendaId);
 
-                foreach (Propiedad prop in propiedades)
+                foreach (Persona.Propiedad prop in propiedades)
                 {
                     parPropietarioId.Value = prop.PropietarioId;
                     parViviendaId.Value = prop.ViviendaId;
 
                     com.ExecuteNonQuery();
                 }
-                Debug.Print("TestInitialize");
             }
             
         }

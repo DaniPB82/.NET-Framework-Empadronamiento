@@ -61,6 +61,8 @@ namespace Dal
             }
         }
 
+        
+
         public static string ObtenerConexion(Tipos tipo)
         {
             switch (tipo)

@@ -66,7 +66,13 @@ namespace Dal
         {
             using (EmpadronamientoContext db = new EmpadronamientoContext())
             {
-                return db.Viviendas.Where(v => v.MunicipioId == idMunicipio).ToList();
+                var consulta = from viv in db.Viviendas
+                               where viv.MunicipioId == idMunicipio
+                               select viv;
+
+                return consulta.ToList();
+
+                //return db.Viviendas.Where(v => v.MunicipioId == idMunicipio).ToList();
             }
         }
 

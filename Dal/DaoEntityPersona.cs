@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Entidades.Persona;
 
 namespace Dal
 {
@@ -83,6 +84,84 @@ namespace Dal
             using(EmpadronamientoContext db = new EmpadronamientoContext())
             {
                 return db.Personas.ToList();
+            }
+        }
+
+        public IEnumerable<Vivienda> ObtenerPropiedadesPorPersona(long propietarioId)
+        {
+            using (EmpadronamientoContext db = new EmpadronamientoContext())
+            {
+                var consulta = from viv in db.Viviendas
+                               join pro in db.Propiedades
+                               on viv.Id equals pro.ViviendaId
+                               where pro.PropietarioId == propietarioId
+                               select viv;
+
+                return consulta.ToList();
+            }
+        }
+
+        public IEnumerable<Persona> ObtenerPropietariosPorVivienda(long viviendaId)
+        {
+            using (EmpadronamientoContext db = new EmpadronamientoContext())
+            {
+                IEnumerable<Persona> consulta = from per in db.Personas
+                               join pro in db.Propiedades
+                               on per.Id equals pro.PropietarioId
+                               where pro.ViviendaId == viviendaId
+                               select per;
+
+                return consulta.ToList();
+            }
+        }
+
+        public IEnumerable<Propiedad> ObtenerPropiedades()
+        {
+            using (EmpadronamientoContext db = new EmpadronamientoContext())
+            {
+                return db.Propiedades.ToList();
+            }
+        }
+
+        public Propiedad Insertar(Propiedad propiedad)
+        {
+            using (EmpadronamientoContext db = new EmpadronamientoContext())
+            {
+                db.Propiedades.Add(propiedad);
+                db.SaveChanges();
+                return propiedad;
+            }
+        }
+
+        public Propiedad Modificar(Propiedad propiedad)
+        {
+            using (EmpadronamientoContext db = new EmpadronamientoContext())
+            {
+                db.Entry(propiedad).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return propiedad;
+            }
+        }
+
+        public void Eliminar(long propietarioId, long viviendaId)
+        {
+            using (EmpadronamientoContext db = new EmpadronamientoContext())
+            {
+                //var consulta = from pro in db.Propiedades
+                //               where pro.PropietarioId == propietarioId &&
+                //               pro.ViviendaId == viviendaId
+                //               select pro;
+                //Propiedad propiedad = consulta as Propiedad;
+                db.Propiedades.Remove(db.Propiedades.Find(propietarioId, viviendaId));
+                db.SaveChanges();
+            }
+        }
+
+        public Propiedad ObtenerPropiedadPorId(long propietarioId, long viviendaId)
+        {
+            using (EmpadronamientoContext db = new EmpadronamientoContext())
+            {
+                return db.Propiedades.Find(propietarioId, viviendaId);
             }
         }
     }

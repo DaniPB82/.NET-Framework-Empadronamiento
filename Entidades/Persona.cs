@@ -44,6 +44,55 @@ namespace Entidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vivienda> Viviendas1 { get; set; }
 
+        public class Propiedad : IEquatable<Propiedad>
+        {
+            [Key, Column(Order = 0)]
+            public long PropietarioId { get; set; }
+
+            [Key, Column(Order = 1)]
+            public long ViviendaId { get; set; }
+
+            [ForeignKey("PropietarioId")]
+            public Persona Persona { get; set; }
+
+            [ForeignKey("ViviendaId")]
+            public Vivienda Vivienda { get; set; }
+
+            public override string ToString() => $"{PropietarioId}, {ViviendaId}";
+            
+            public override bool Equals(object obj)
+            {
+                return Equals(obj as Propiedad);
+            }
+
+            public bool Equals(Propiedad other)
+            {
+                return other != null &&
+                       PropietarioId == other.PropietarioId &&
+                       ViviendaId == other.ViviendaId;
+            }
+
+            public override int GetHashCode()
+            {
+                int hashCode = -1213599712;
+                hashCode = hashCode * -1521134295 + PropietarioId.GetHashCode();
+                hashCode = hashCode * -1521134295 + ViviendaId.GetHashCode();
+                return hashCode;
+            }
+
+            public static bool operator ==(Propiedad left, Propiedad right)
+            {
+                return EqualityComparer<Propiedad>.Default.Equals(left, right);
+            }
+
+            public static bool operator !=(Propiedad left, Propiedad right)
+            {
+                return !(left == right);
+            }
+        }
+
+        public override string ToString() => $"{Id}, {HogarId}, {Dni}, {Nombre}, {Apellido}, {FechaNacimiento}";
+
         public override bool Equals(object obj)
         {
             return Equals(obj as Persona);
@@ -71,8 +120,6 @@ namespace Entidades
             hashCode = hashCode * -1521134295 + FechaNacimiento.GetHashCode();
             return hashCode;
         }
-
-        public override string ToString() => $"{Id}, {HogarId}, {Dni}, {Nombre}, {Apellido}, {FechaNacimiento}";
 
         public static bool operator ==(Persona left, Persona right)
         {
