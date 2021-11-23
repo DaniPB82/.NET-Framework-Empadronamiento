@@ -44,6 +44,7 @@
     <Compile Include="MunicipiosBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvinciasBll.cs" />
+    <Compile Include="ViviendasBll.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dal\Dal.csproj">
