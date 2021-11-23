@@ -10,5 +10,6 @@ namespace Dal
     public interface IDaoMunicipio: IDao<Municipio>
     {
         IEnumerable<Municipio> ObtenerPorNombre(string nombre);
+        IEnumerable<Municipio> ObtenerPorProvinciaId(long provinciaId);
     }
 }

@@ -54,6 +54,14 @@ namespace Dal
             }
         }
 
+        public IEnumerable<Municipio> ObtenerPorProvinciaId(long provinciaId)
+        {
+            using (EmpadronamientoContext db = new EmpadronamientoContext())
+            {
+                return db.Municipios.Where(m => m.ProvinciaId == provinciaId).ToList();
+            }
+        }
+
         public IEnumerable<Municipio> ObtenerTodos()
         {
             using (EmpadronamientoContext db = new EmpadronamientoContext())
