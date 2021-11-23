@@ -22,6 +22,11 @@ namespace Bll
             return dao.ObtenerPorId(id);
         }
 
+        public static IEnumerable<Municipio> BuscarPorProvinciaId(long provinciaId)
+        {
+            return dao.ObtenerPorProvinciaId(provinciaId);
+        }
+
         public static IEnumerable<Municipio> BuscarPorNombre(string nombre)
         {
             return dao.ObtenerPorNombre(nombre);
