@@ -206,7 +206,7 @@ namespace PlConsola
             else
             {
                 Console.WriteLine();
-                Console.WriteLine("No existe ninguna provinciacon el ID = " + id);
+                Console.WriteLine("No existe ninguna provincia con el ID = " + id);
             }
             Program.Continuar(2);
         }

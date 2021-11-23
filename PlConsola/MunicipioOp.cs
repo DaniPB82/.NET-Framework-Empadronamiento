@@ -32,6 +32,7 @@ namespace PlConsola
         private static void AccionMenuMunicipios(int opcion)
         {
             long id;
+            Municipio municipio;
 
             switch (opcion)
             {
@@ -41,23 +42,23 @@ namespace PlConsola
                     break;
                 case 2:
                     id = OpcionMunicipioId();
-                    //ConsultarMunicipioPorId(id);
+                    ConsultarMunicipioPorId(id);
                     break;
                 case 3:
                     OpcionMunicipioNombre();
-                    //ConsultarMunicipioPorNombre(Console.ReadLine());
+                    ConsultarMunicipioPorNombre(Console.ReadLine());
                     break;
                 case 4:
-                    Municipio municipio = OpcionInsertarMunicipio();
+                    municipio = OpcionInsertarMunicipio();
                     InsertarMunicipio(municipio);
                     break;
                 case 5:
-                    //id = OpcionModificarMunicipio();
-                    //ModificarMunicipio(id, Console.ReadLine());
+                    id = OpcionModificarMunicipio();
+                    ModificarMunicipio(id, Console.ReadLine());
                     break;
                 case 6:
-                    //id = OpcionEliminarMunicipio();
-                    //EliminarMunicipio(id);
+                    id = OpcionEliminarMunicipio();
+                    EliminarMunicipio(id);
                     break;
                 case 7:
                     Program.MenuPincipal();
@@ -71,16 +72,121 @@ namespace PlConsola
             }
         }
 
+        private static void EliminarMunicipio(long id)
+        {
+            Municipio municipio = Bll.MunicipiosBll.BuscarPorId(id);
+            if (municipio != null)
+            {
+                Bll.MunicipiosBll.Eliminar(id);
+            }
+            else
+            {
+                Console.WriteLine("No exixte ningún municipio con el ID = " + id);
+            }
+
+            Program.Continuar(3);
+        }
+
+        private static long OpcionEliminarMunicipio()
+        {
+            long id;
+            Console.WriteLine();
+            Console.Write("Introduce el ID del MUNICIPIO que deseas ELIMINAR: ");
+            Int64.TryParse(Console.ReadLine(), out id);
+            return id;
+        }
+
+        private static void ModificarMunicipio(long id, string nombre)
+        {
+            long provinciaId;
+            Municipio municipio = Bll.MunicipiosBll.BuscarPorId(id);
+            if (municipio != null)
+            {
+                Console.Write("Introduce el ID de la PROVINCIA a la que pertenece el MUNICIPIO: ");
+                Int64.TryParse(Console.ReadLine(), out provinciaId);
+                Provincia provincia = Bll.ProvinciasBll.BuscarPorId(provinciaId);
+                if (provincia != null)
+                {
+                    Bll.MunicipiosBll.Modificar(new Municipio()
+                    {
+                        Id = id,
+                        Nombre = nombre,
+                        ProvinciaId = provinciaId
+                    });
+                }
+                else
+                {
+                    Bll.MunicipiosBll.Modificar(new Municipio()
+                    {
+                        Id = id,
+                        Nombre = nombre,
+                        ProvinciaId = null
+                    });
+                }
+            }
+            Program.Continuar(3);
+        }
+
+        private static long OpcionModificarMunicipio()
+        {
+            long id;
+            Console.WriteLine();
+            ConsultarMunicipios();
+            Console.WriteLine();
+            Console.Write("Introduce el ID del MUNICIPIO que deseas MODIFICAR: ");
+            Int64.TryParse(Console.ReadLine(), out id);
+            Console.Write("Introduce el nuevo NOMBRE del MUNICIPIO: ");
+            return id;
+        }
+
+        private static void ConsultarMunicipioPorNombre(string nombre)
+        {
+            List<Municipio> municipios = Bll.MunicipiosBll.BuscarPorNombre(nombre).ToList();
+
+            if (municipios.Count > 0)
+            {
+                foreach (var item in municipios)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("No existen MUNICIPIOS que contengan la expresión: " + nombre);
+            }
+
+            Program.Continuar(3);
+        }
+
+        private static void ConsultarMunicipioPorId(long id)
+        {
+            Municipio municipio = Bll.MunicipiosBll.BuscarPorId(id);
+
+            if (municipio != null)
+            {
+                Console.WriteLine(municipio);
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("No existe el MUNICIPIO con el Id = " + id);
+            }
+
+            Program.Continuar(3);
+        }
+
         private static Municipio OpcionInsertarMunicipio()
         {
             Console.WriteLine();
             Console.Write("Introduce el NOMBRE del nuevo MUNICIPIO: ");
             string nombre = Console.ReadLine();
-            Console.Write("Introduce el ID de la PROVINCIA del nuevo MUNICIPIO: ");
+            Console.Write("Introduce el ID de la PROVINCIA del nuevo MUNICIPIO (0 para null): ");
             long provinciaId;
             Int64.TryParse(Console.ReadLine(), out provinciaId);
             Municipio municipio;
-            if (provinciaId.Equals(""))
+            Provincia provincia = Bll.ProvinciasBll.BuscarPorId(provinciaId);
+            if (provincia == null)
             {
                 municipio = new Municipio()
                 {
@@ -96,6 +202,7 @@ namespace PlConsola
                     ProvinciaId = provinciaId
                 };
             }
+
             return municipio;
         }
 
@@ -103,7 +210,7 @@ namespace PlConsola
         {
             Bll.MunicipiosBll.Guardar(municipio);
 
-            Program.Continuar(2);
+            Program.Continuar(3);
         }
 
         private static void OpcionMunicipioNombre()
@@ -127,10 +234,13 @@ namespace PlConsola
 
             Console.WriteLine();
             Program.Cabecera("LISTADO DE MUNICIPIOS");
+
             foreach (var item in municipios)
             {
                 Console.WriteLine(item);
             }
+
+            Program.Continuar(3);
         }
     }
 }
