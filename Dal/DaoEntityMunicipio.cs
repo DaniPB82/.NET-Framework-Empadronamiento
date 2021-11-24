@@ -42,7 +42,7 @@ namespace Dal
         {
             using (EmpadronamientoContext db = new EmpadronamientoContext())
             {
-                return db.Municipios.Find(id);
+                return db.Municipios.Include("Viviendas").FirstOrDefault(m => m.Id == id);
             }
         }
 
