@@ -23,6 +23,12 @@ namespace WebApi.Controllers
         }
 
         // GET: api/Viviendas/5
+        public IEnumerable<Vivienda> GetPropiedadesPorPersona(long propietarioId)
+        {
+            return Bll.PersonasBll.BuscarPropiedadesPorPersona(propietarioId);
+        }
+
+        // GET: api/Viviendas/5
         public IEnumerable<Vivienda> GetViviendasPorMunicipio(long municipioId)
         {
             return Bll.ViviendasBll.BuscarPorMunicipio(municipioId);
