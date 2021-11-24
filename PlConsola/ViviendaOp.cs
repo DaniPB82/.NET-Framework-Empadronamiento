@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace PlConsola
 {
+    // Clase inacabada con la idea de que el/la que descargue el repositorio
+    // complete esta clase muy similar a las que están acabadas.
     internal class ViviendaOp
     {
         internal static void MenuViviendas()
