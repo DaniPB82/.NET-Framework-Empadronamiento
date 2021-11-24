@@ -54,9 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MunicipioOp.cs" />
+    <Compile Include="PersonaOp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvinciaOp.cs" />
+    <Compile Include="ViviendaOp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

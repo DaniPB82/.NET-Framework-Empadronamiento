@@ -24,7 +24,7 @@ namespace PlConsola
             Console.WriteLine("1 - Operaciones con PROVINCIAS");
             Console.WriteLine("2 - Operaciones con MUNICIPIOS");
             Console.WriteLine("3 - Operaciones con VIVIENDAS");
-            Console.WriteLine("4 - Operaciones con PERSONAS");
+            Console.WriteLine("4 - Operaciones con PERSONAS y PROPIEDADES");
             Console.WriteLine("5 - SALIR");
             
             int accion = OpcionMenu();
@@ -52,10 +52,10 @@ namespace PlConsola
                     MunicipioOp.MenuMunicipios();
                     break;
                 case 3:
-                    MenuViviendas();
+                    ViviendaOp.MenuViviendas();
                     break;
                 case 4:
-                    MenuPersonas();
+                    PersonaOp.MenuPersonasPropiedades();
                     break;
                 case 5:
                     Environment.Exit(1);
@@ -106,10 +106,10 @@ namespace PlConsola
                     MunicipioOp.MenuMunicipios();
                     break;
                 case 4:
-                    MenuViviendas();
+                    ViviendaOp.MenuViviendas();
                     break;
                 case 5:
-                    MenuPersonas();
+                    PersonaOp.MenuPersonasPropiedades();
                     break;
                 default:
                     break;
@@ -118,44 +118,8 @@ namespace PlConsola
 
         
 
-        internal static void MenuViviendas()
-        {
-            Console.WriteLine("Viviendas");
-            //Console.Clear();
+        
 
-            //Cabecera("MENÚ PROVINCIAS");
-
-            //Console.WriteLine("1 - Listado");
-            //Console.WriteLine("2 - Búsqueda por ID");
-            //Console.WriteLine("3 - Búsqueda por NOMBRE");
-            //Console.WriteLine("4 - Insertar");
-            //Console.WriteLine("5 - Modificar");
-            //Console.WriteLine("6 - Eliminar");
-
-            //Console.WriteLine();
-            //Console.Write("Elige la opción deseada: ");
-            //int opcionElegida = Console.Read();
-            //OpcionMenuProvincias(opcionElegida);
-        }
-
-        internal static void MenuPersonas()
-        {
-            Console.WriteLine("Personas");
-            //Console.Clear();
-
-            //Cabecera("MENÚ PROVINCIAS");
-
-            //Console.WriteLine("1 - Listado");
-            //Console.WriteLine("2 - Búsqueda por ID");
-            //Console.WriteLine("3 - Búsqueda por NOMBRE");
-            //Console.WriteLine("4 - Insertar");
-            //Console.WriteLine("5 - Modificar");
-            //Console.WriteLine("6 - Eliminar");
-
-            //Console.WriteLine();
-            //Console.Write("Elige la opción deseada: ");
-            //int opcionElegida = Console.Read();
-            //OpcionMenuProvincias(opcionElegida);
-        }
+        
     }
 }
