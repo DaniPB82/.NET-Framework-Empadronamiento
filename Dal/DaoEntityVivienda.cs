@@ -58,7 +58,7 @@ namespace Dal
         {
             using (EmpadronamientoContext db = new EmpadronamientoContext())
             {
-                return db.Viviendas.Find(id);
+                return db.Viviendas.Include("Empadronados").FirstOrDefault(v => v.Id == id);
             }
         }
 

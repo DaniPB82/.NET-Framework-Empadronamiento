@@ -12,7 +12,7 @@ namespace Entidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Vivienda()
         {
-            Personas = new HashSet<Persona>();
+            Empadronados = new HashSet<Persona>();
             Personas1 = new HashSet<Persona>();
         }
 
@@ -31,7 +31,7 @@ namespace Entidades
         public virtual Municipio Municipios { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Persona> Personas { get; set; }
+        public virtual ICollection<Persona> Empadronados { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Persona> Personas1 { get; set; }

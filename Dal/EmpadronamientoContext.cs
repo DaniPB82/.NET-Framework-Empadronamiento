@@ -42,10 +42,12 @@ namespace Dal
                 .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Vivienda>()
-                .HasMany(e => e.Personas)
+                .HasMany(e => e.Empadronados)
                 .WithRequired(e => e.Viviendas)
                 .HasForeignKey(e => e.HogarId)
                 .WillCascadeOnDelete(true);
+
+            
 
         }
     }
